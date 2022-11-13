@@ -38,7 +38,7 @@ before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destro
   end
 
   def destroy
-    article = Article.find(params[:id])
+    article = current_user.articles.find(params[:id])
     if article.destroy!
       redirect_to root_path, notice: '削除しました'
     end
